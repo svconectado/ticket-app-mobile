@@ -18,9 +18,12 @@ Desarrollar una aplicación web con Ionic que funcione mediante datos móviles, 
 3. Que el aplicativo posea una vista de anfitrión de cola (negocio) además de vista de huésped (usuario).
 
 ## ALCANCES
-| Plataformas | Android e iOS / Web |
-| ----------- | ------------------- |
-|Tecnologías a utilizar en el desarrollado|
+* Plataformas: Android e iOS / Web 
+
+* Tecnologías a utilizar en el desarrollado
+
+| Ambiente | Tecnología |
+| -------- | ---------- |
 | App móvil | Ionic |
 | Backend | NodeJS |
 | Base de datos | PostgreSQL 11.7 |
