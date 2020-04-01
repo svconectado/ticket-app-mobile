@@ -25,8 +25,8 @@ Desarrollar una aplicación web con Ionic que funcione mediante datos móviles, 
 | Ambiente | Tecnología |
 | -------- | ---------- |
 | App móvil | Ionic |
-| Backend | NodeJS |
+| Backend | Java |
 | Base de datos | PostgreSQL 11.7 |
 
 ## SOBRE EL EQUIPO DE TRABAJO
-Los participantes del proyecto deben anotarse en un equipo de trabajo (siguiente sección 4.1) para conocerse y buscar los medios de comunicación adecuados para completar las tareas que consideren a bien cumplir y llevar organizadas en el espacio de [Trello ticketscolas](https://trello.com/b/ogbQCcr2/ticketscolas), además subir sus repositorios en [Github TicketQueueApp](https://github.com/orgs/TicketQueueApp) que ha sido destinado para el proyecto completo. Los equipos de trabajo son los responsables en cumplir con las tareas asociadas a las tecnologías del equipo, sin embargo todos los participantes pueden aportar ideas para el mejoramiento del proyecto.
+Los participantes del proyecto deben anotarse en un equipo de trabajo (siguiente sección 4.1) para conocerse y buscar los medios de comunicación adecuados para completar las tareas que consideren a bien cumplir y llevar organizadas en el espacio de [Trello ticketscolas](https://trello.com/b/ogbQCcr2/ticketscolas), además subir sus repositorios en [Github TicketQueueApp](https://github.com/elsalvadorconectado) que ha sido destinado para el proyecto completo. Los equipos de trabajo son los responsables en cumplir con las tareas asociadas a las tecnologías del equipo, sin embargo todos los participantes pueden aportar ideas para el mejoramiento del proyecto.
