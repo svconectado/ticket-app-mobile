@@ -13,10 +13,7 @@ import { CustomBreakpointNames } from '@core/services/breakpoints.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  @ViewChild('slider') private slider: IonSlides;
-  slideOpts: any = {
-    slidesPerView: 1
-  };
+  slideOpts: any = { };
   tiposEmpresa: TipoEmpresa[] = TIPO_EMPRESA;
 
   constructor(
@@ -24,13 +21,17 @@ export class HomePage {
     private layoutService: LayoutService
   ) {
     this.layoutService.subscribeToLayoutChanges().subscribe(observerResponse => {
+      let cantSlides = 0;
       if (this.layoutService.isBreakpointActive(CustomBreakpointNames.small))
-        this.slideOpts.slidesPerView = 3;
+        cantSlides = 3;
       if (this.layoutService.isBreakpointActive(CustomBreakpointNames.mediumHanset))
-      this.slideOpts.slidesPerView = 2;
+        cantSlides = 2;
       if (this.layoutService.isBreakpointActive(CustomBreakpointNames.extraSmall))
-        this.slideOpts.slidesPerView = 1;
-    });
+        cantSlides = 1;
+      this.slideOpts = {
+        slidesPerView: cantSlides
+      }
+    })
   }
 
 }
