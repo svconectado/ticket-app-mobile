@@ -1,20 +1,27 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Blank
+      Ticket Queue App
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content class="ion-padding" scroll-y="false">
+  <ion-slides #slider [pager]="true" [options]="slideOpts">
+    <ion-slide *ngFor="let tipo of tiposEmpresa">
+      <div
+        class="ion-justify-content-around container"
+        [ngStyle]="{'background-color': tipo.color}">
+        <img [src]="tipo.imagen" />
+        <h2>{{ tipo.tipo }}</h2>
+        <p>
+          Selecciona el tipo de establecimiento que quieras visitar y genera tu
+          ticket para evitar aglomeraciones
+        </p>
+        <ion-button shape="round">
+          Seleccionar {{ tipo.tipo }}
+        </ion-button>
+      </div>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
