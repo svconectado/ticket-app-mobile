@@ -1,9 +1,19 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>empresas</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>TicketQueueApp</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-title>BANCOS</ion-title>
+    <!-- List of Text Items -->
+    <ion-list>
+        <ion-item routerLink="/home" *ngFor="let empresa of empresas">
+            <ion-icon name="browsers-outline"></ion-icon>
+            <ion-label>{{empresa}}</ion-label>
+        </ion-item>
+
+
+    </ion-list>
 
 </ion-content>

@@ -1,27 +1,24 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ticket Queue App
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Ticket Queue App
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding" scroll-y="false">
-  <ion-slides #slider [pager]="true" [options]="slideOpts">
-    <ion-slide *ngFor="let tipo of tiposEmpresa">
-      <div
-        class="ion-justify-content-around container"
-        [ngStyle]="{'background-color': tipo.color}">
-        <img [src]="tipo.imagen" />
-        <h2>{{ tipo.tipo }}</h2>
-        <p>
-          Selecciona el tipo de establecimiento que quieras visitar y genera tu
-          ticket para evitar aglomeraciones
-        </p>
-        <ion-button shape="round">
-          Seleccionar {{ tipo.tipo }}
-        </ion-button>
-      </div>
-    </ion-slide>
-  </ion-slides>
+    <ion-slides #slider [pager]="true" [options]="slideOpts">
+        <ion-slide *ngFor="let tipo of tiposEmpresa">
+            <div class="ion-justify-content-around container" [ngStyle]="{'background-color': tipo.color}">
+                <img [src]="tipo.imagen" />
+                <h2>{{ tipo.tipo }}</h2>
+                <p>
+                    Selecciona el tipo de establecimiento que quieras visitar y genera tu ticket para evitar aglomeraciones
+                </p>
+                <ion-button href="empresas" shape="round">
+                    Seleccionar {{ tipo.tipo }}
+                </ion-button>
+            </div>
+        </ion-slide>
+    </ion-slides>
 </ion-content>
