@@ -13,7 +13,7 @@ import { EmpresasPage } from './empresas.page';
     CommonModule,
     FormsModule,
     IonicModule,
-  //  EmpresasPageRoutingModule
+    EmpresasPageRoutingModule
   ],
   declarations: [EmpresasPage]
 })
