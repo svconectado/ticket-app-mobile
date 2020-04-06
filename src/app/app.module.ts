@@ -12,13 +12,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CoreModule } from '@core/core.module';
 
-//Pages
-import {EmpresasPage} from '../app/empresas/empresas.page'
-
-
 @NgModule({
-  declarations: [AppComponent, EmpresasPage],
-  entryComponents: [ EmpresasPage],
+  declarations: [AppComponent],
   imports: [
     CoreModule,
     BrowserModule,
