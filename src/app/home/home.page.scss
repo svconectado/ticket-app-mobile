@@ -15,14 +15,16 @@ ion-slides {
   height: 100%;
   display: flex;
   max-width: 300px;
+  min-width: 250px;
   max-height: 500px;
+  min-height: 370px;
   position: relative;
   border-radius: 25px;
   flex-direction: column;
 
   img {
-    top: -7%;
-    right: -7%;
+    top: -2em;
+    right: -2em;
     height: auto;
     max-width: 90px;
     position: absolute;
