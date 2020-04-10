@@ -8,17 +8,22 @@
 
 <ion-content class="ion-padding" scroll-y="false">
   <ion-slides #slider [pager]="true" [options]="slideOpts">
-    <ion-slide *ngFor="let tipo of tiposEmpresa">
+    <ion-slide *ngFor="let tipo of tiposEmpresa; let i = index">
       <div
         class="ion-justify-content-around container"
-        [ngStyle]="{'background-color': tipo.color}">
-        <img [src]="tipo.imagen" />
+        [ngStyle]="{'background-color': colors[i % 3]}">
+        <img [src]="tipo.imagen" [alt]="'Icono del tipo de empresa: ' + tipo.tipo"/>
         <h2>{{ tipo.tipo }}</h2>
         <p>
-          Selecciona el tipo de establecimiento que quieras visitar y genera tu
-          ticket para evitar aglomeraciones
+          Selecciona el tipo de establecimiento que quieras visitar y genera tu ticket para evitar aglomeraciones
         </p>
-        <ion-button shape="round">
+        <ion-button
+          shape="round"
+          routerLink="/empresas"
+          [queryParams]="{
+            id: tipo.id,
+            tipo: tipo.tipo
+          }">
           Seleccionar {{ tipo.tipo }}
         </ion-button>
       </div>

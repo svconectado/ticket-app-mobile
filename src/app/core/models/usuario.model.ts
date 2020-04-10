@@ -1,4 +1,6 @@
 import { Resource } from './resource.model';
+
+import { Rol } from '@core/enums/rol.enum';
 import { Sucursal } from './sucursal.model';
 
 export interface Usuario extends Resource {
@@ -13,6 +15,6 @@ export interface Usuario extends Resource {
   isStaff?: boolean;
   dateJoined?: Date;
   telefono?: string;
-  rol?: number;
+  rol?: Rol | number;
   sucursal?: Sucursal | number;
 }

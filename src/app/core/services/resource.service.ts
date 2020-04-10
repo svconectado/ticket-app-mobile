@@ -12,7 +12,11 @@ import { AbstractResourceService } from './abstract-resource.service';
 export class ResourceService<T extends Resource> extends AbstractResourceService<T> {
   protected url: string;
 
-  constructor(protected http: HttpClient, protected messageService: MessageService, endPoint: string) {
+  constructor(
+    endPoint: string,
+    protected http: HttpClient,
+    protected messageService: MessageService
+  ) {
     super(messageService);
     this.url = `${environment.baseApiUrl}/${endPoint}`;
   }

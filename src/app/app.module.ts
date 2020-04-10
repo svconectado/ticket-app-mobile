@@ -14,7 +14,6 @@ import { CoreModule } from '@core/core.module';
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
   imports: [
     CoreModule,
     BrowserModule,
