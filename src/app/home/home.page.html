@@ -12,7 +12,7 @@
       <div
         class="ion-justify-content-around container"
         [ngStyle]="{'background-color': colors[i % 3]}">
-        <img [src]="tipo.imagen" />
+        <img [src]="tipo.imagen" [alt]="'Icono del tipo de empresa: ' + tipo.tipo"/>
         <h2>{{ tipo.tipo }}</h2>
         <p>
           Selecciona el tipo de establecimiento que quieras visitar y genera tu ticket para evitar aglomeraciones

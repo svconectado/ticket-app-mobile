@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EmpresasPage implements OnInit {
   // tipo$: Observable<TipoEmpresa>;
   tipoEmpresa: TipoEmpresa;
+  defaultImageUrl = 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y';
 
   empresas: Empresa[] = [
     {

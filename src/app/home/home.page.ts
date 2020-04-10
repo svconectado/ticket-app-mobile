@@ -1,12 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { TipoEmpresa } from '@core/models/tipo-empresa.model';
 
 import { TIPO_EMPRESA } from '@core/const/tipo-empresa.const';
-import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
-import { IonSlides, NavController } from '@ionic/angular';
 import { LayoutService } from '@core/services/layout.service';
 import { CustomBreakpointNames } from '@core/services/breakpoints.service';
-import { TipoEmpresaService } from '@core/services/tipo-empresa.service';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +21,6 @@ export class HomePage {
 
   constructor(
     private layoutService: LayoutService,
-    private breakpointObserver: BreakpointObserver,
   ) {
     this.layoutService.subscribeToLayoutChanges().subscribe(() => {
       let cantSlides = 0;

@@ -17,7 +17,9 @@
       *ngFor="let empresa of empresas"
       [routerLink]="[empresa.id, 'sucusales']">
       <ion-thumbnail slot="start">
-        <img [src]="empresa.imagen? empresa.imagen : 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
+        <img 
+          [alt]="'Logo de la empresa: ' + empresa.nombre"
+          [src]="empresa.imagen? empresa.imagen : defaultImageUrl">
       </ion-thumbnail>
       <ion-label>
         {{ empresa.nombre }}
