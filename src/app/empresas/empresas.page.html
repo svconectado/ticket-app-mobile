@@ -1,19 +1,27 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>TicketQueueApp</ion-title>
-    </ion-toolbar>
-</ion-header>
+<app-basic-header
+  [title]="tipoEmpresa.tipo | titlecase"
+  text="Inicio"
+  defaultHref="/home">
+</app-basic-header>
 
 <ion-content>
-    <ion-title>BANCOS</ion-title>
-    <!-- List of Text Items -->
-    <ion-list>
-        <ion-item routerLink="/home" *ngFor="let empresa of empresas">
-            <ion-icon name="browsers-outline"></ion-icon>
-            <ion-label>{{empresa}}</ion-label>
-        </ion-item>
-
-
-    </ion-list>
-
+  <ion-list-header>
+    <ion-label *ngIf="tipoEmpresa">
+      {{ tipoEmpresa?.tipo }}
+    </ion-label>
+  </ion-list-header>
+  <!-- List of Text Items -->
+  <ion-list>
+    <ion-item 
+      lines="none"
+      *ngFor="let empresa of empresas"
+      [routerLink]="[empresa.id, 'sucusales']">
+      <ion-thumbnail slot="start">
+        <img [src]="empresa.imagen? empresa.imagen : 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
+      </ion-thumbnail>
+      <ion-label>
+        {{ empresa.nombre }}
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
