@@ -1,9 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { TipoEmpresa } from '@core/models/tipo-empresa.model';
 
 import { TIPO_EMPRESA } from '@core/const/tipo-empresa.const';
-import { BreakpointObserver, BreakpointState, Breakpoints } from '@angular/cdk/layout';
-import { IonSlides } from '@ionic/angular';
 import { LayoutService } from '@core/services/layout.service';
 import { CustomBreakpointNames } from '@core/services/breakpoints.service';
 
@@ -14,13 +12,17 @@ import { CustomBreakpointNames } from '@core/services/breakpoints.service';
 })
 export class HomePage {
   slideOpts: any = { };
+  colors: string[] = [
+    '#68889E',
+    '#34B29D',
+    '#AFD872',
+  ]
   tiposEmpresa: TipoEmpresa[] = TIPO_EMPRESA;
 
   constructor(
-    public breakpointObserver: BreakpointObserver,
-    private layoutService: LayoutService
+    private layoutService: LayoutService,
   ) {
-    this.layoutService.subscribeToLayoutChanges().subscribe(observerResponse => {
+    this.layoutService.subscribeToLayoutChanges().subscribe(() => {
       let cantSlides = 0;
       if (this.layoutService.isBreakpointActive(CustomBreakpointNames.small))
         cantSlides = 3;
