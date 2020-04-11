@@ -4,11 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { TipoEmpresa } from '@core/models/tipo-empresa.model';
 
 @Component({
-  selector: 'app-primary',
-  templateUrl: './primary.component.html',
-  styleUrls: ['./primary.component.scss'],
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss'],
 })
-export class PrimaryComponent implements OnInit {
+export class MainComponent implements OnInit {
 
   tipoEmpresa: TipoEmpresa;
 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { EmpresasPage } from './empresas.page';
-import { PrimaryComponent } from './components/primary/primary.component';
+import { MainComponent } from './components/main/main.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: PrimaryComponent
+        component: MainComponent
       },
       {
         path: ':id',

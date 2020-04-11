@@ -5,6 +5,7 @@ import { MessageService } from './message.service';
 import { ResourceService } from './resource.service';
 
 import { TipoEmpresa } from '@core/models/tipo-empresa.model';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,6 @@ export class TipoEmpresaService extends ResourceService<TipoEmpresa> {
     protected http: HttpClient,
     protected messageService: MessageService
   ) {
-    super('tipo-empresa', http, messageService);
+    super(environment.endpoints.tipoEmpresa, http, messageService);
   }
 }

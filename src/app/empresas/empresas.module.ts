@@ -10,7 +10,7 @@ import { SharedModule } from '@shared/shared.module';
 import { EmpresasPage } from './empresas.page';
 import { EmpresaComponent } from './components/empresa/empresa.component';
 import { EmpresaListContainer } from './containers/empresa-list/empresa-list.container';
-import { PrimaryComponent } from './components/primary/primary.component';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
   imports: [
@@ -22,7 +22,7 @@ import { PrimaryComponent } from './components/primary/primary.component';
   ],
   declarations: [
     EmpresasPage,
-    PrimaryComponent,
+    MainComponent,
     EmpresaComponent,
     EmpresaListContainer,
   ]
