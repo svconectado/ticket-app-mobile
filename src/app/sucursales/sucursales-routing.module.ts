@@ -6,6 +6,11 @@ import { SucursalesPage } from './sucursales.page';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'sucursales',
+    pathMatch: 'full'
+  },
+  {
+    path: 'sucursales',
     component: SucursalesPage
   }
 ];

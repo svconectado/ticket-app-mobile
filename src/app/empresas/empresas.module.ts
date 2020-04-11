@@ -8,6 +8,9 @@ import { EmpresasPageRoutingModule } from './empresas-routing.module';
 import { SharedModule } from '@shared/shared.module';
 
 import { EmpresasPage } from './empresas.page';
+import { EmpresaComponent } from './components/empresa/empresa.component';
+import { EmpresaListContainer } from './containers/empresa-list/empresa-list.container';
+import { PrimaryComponent } from './components/primary/primary.component';
 
 @NgModule({
   imports: [
@@ -17,6 +20,11 @@ import { EmpresasPage } from './empresas.page';
     SharedModule,
     EmpresasPageRoutingModule
   ],
-  declarations: [EmpresasPage]
+  declarations: [
+    EmpresasPage,
+    PrimaryComponent,
+    EmpresaComponent,
+    EmpresaListContainer,
+  ]
 })
 export class EmpresasPageModule {}

@@ -1,0 +1,12 @@
+<ion-item 
+  lines="none"
+  [routerLink]="[empresa.id]">
+  <ion-thumbnail slot="start">
+    <img 
+      [alt]="'Logo de la empresa: ' + empresa.nombre"
+      [src]="empresa.imagen? empresa.imagen : defaultImageUrl">
+  </ion-thumbnail>
+  <ion-label>
+    {{ empresa.nombre }}
+  </ion-label>
+</ion-item>
