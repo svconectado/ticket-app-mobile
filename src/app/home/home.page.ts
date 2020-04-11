@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { TipoEmpresa } from '@core/models/tipo-empresa.model';
 
-import { TIPO_EMPRESA } from '@core/const/tipo-empresa.const';
 import { LayoutService } from '@core/services/layout.service';
-import { CustomBreakpointNames } from '@core/services/breakpoints.service';
 import { TipoEmpresaService } from '@core/services/tipo-empresa.service';
+import { CustomBreakpointNames } from '@core/services/breakpoints.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +17,7 @@ export class HomePage {
     '#34B29D',
     '#AFD872',
   ]
-  tiposEmpresa: TipoEmpresa[] = TIPO_EMPRESA;
+  tiposEmpresa: TipoEmpresa[];
 
   constructor(
     private layoutService: LayoutService,
@@ -39,8 +38,8 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
-    this.tipoEmpresaService.getList().subscribe((tipos)=> {
-      console.log(tipos);
+    this.tipoEmpresaService.getList().subscribe((tipos: TipoEmpresa[])=> {
+      this.tiposEmpresa = tipos;
     })
   }
 }
