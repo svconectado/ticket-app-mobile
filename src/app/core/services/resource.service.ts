@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '@environments/environment';
@@ -36,6 +36,7 @@ export class ResourceService<T extends Resource> extends AbstractResourceService
     return this.http.get<T[]>(`${this.url}/${queryParameters}`)
     .pipe(
       tap(_ => console.log('Data obtained successfully.')),
+      map((response: any) => response.data),
       catchError(this.handleError<any>())
     );
   }
@@ -45,6 +46,7 @@ export class ResourceService<T extends Resource> extends AbstractResourceService
     return this.http.get<T>(`${this.url}/${id}`)
     .pipe(
       tap((datum: T) => console.log(`Datum obtained successfully: ${datum}.`)),
+      map((response: any) => response.data),
       catchError(this.handleError<T>())
     );
   }
@@ -52,6 +54,7 @@ export class ResourceService<T extends Resource> extends AbstractResourceService
   putObject(object: T): Observable<any> {
     return this.http.put(`${this.url}/${object.id}`, object).pipe(
       tap((datum: T) => this.log(`The changes in ${datum} were saved successfully.`)),
+      map((response: any) => response.data),
       catchError(this.handleError<T>())
     );
   }
@@ -60,6 +63,7 @@ export class ResourceService<T extends Resource> extends AbstractResourceService
     return this.http.post(this.url, object)
     .pipe(
       tap((datum: T) => this.log(`${datum} was saved correctly.`)),
+      map((response: any) => response.data),
       catchError(this.handleError<T>())
     );
   }
@@ -69,6 +73,7 @@ export class ResourceService<T extends Resource> extends AbstractResourceService
     return this.http.delete<T>(`${this.url}/${id}`)
     .pipe(
       tap((datum: T) => this.log(`${datum} was deleted correctly.`)),
+      map((response: any) => response.data),
       catchError(this.handleError<T>())
     );
   }
