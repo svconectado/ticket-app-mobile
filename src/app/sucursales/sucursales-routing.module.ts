@@ -11,7 +11,13 @@ const routes: Routes = [
   },
   {
     path: 'sucursales',
-    component: SucursalesPage
+    component: SucursalesPage,
+    children: [
+      {
+        path: ':id',
+        loadChildren: () => import('@ticket/ticket.module').then( m => m.TicketPageModule)
+      }
+    ]
   }
 ];
 
