@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { tap, catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '@environments/environment';
@@ -11,6 +11,8 @@ import { AbstractResourceService } from './abstract-resource.service';
 
 export class ResourceService<T extends Resource> extends AbstractResourceService<T> {
   protected url: string;
+  private source = new BehaviorSubject<T>(null);
+  object$ = this.source.asObservable();
 
   constructor(
     endPoint: string,
@@ -36,6 +38,11 @@ export class ResourceService<T extends Resource> extends AbstractResourceService
     return this.http.get<T[]>(`${this.url}/${queryParameters}`)
     .pipe(
       tap(_ => console.log('Data obtained successfully.')),
+      map((response: any) => {
+        if (response.header.code === -1)
+          return  [];
+        return response.data?.sort(this.ordering);
+      }),
       catchError(this.handleError<any>())
     );
   }
@@ -71,6 +78,18 @@ export class ResourceService<T extends Resource> extends AbstractResourceService
       tap((datum: T) => this.log(`${datum} was deleted correctly.`)),
       catchError(this.handleError<T>())
     );
+  }
+
+  selectedObject(object: T): void {
+    this.source.next(object);
+  }
+
+  ordering(a: T, b: T): number {
+    if (a.id < b.id)
+      return -1;
+    if (a.id > b.id)
+      return 1;
+    return 0;
   }
 
 }
