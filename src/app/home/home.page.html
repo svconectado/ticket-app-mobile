@@ -8,7 +8,7 @@
 
 <ion-content class="ion-padding" scroll-y="false">
   <ion-slides #slider [pager]="true" [options]="slideOpts">
-    <ion-slide *ngFor="let tipo of tiposEmpresa; let i = index">
+    <ion-slide *ngFor="let tipo of items; let i = index">
       <div
         class="ion-justify-content-around container"
         [ngStyle]="{'background-color': colors[i % 3]}">
@@ -19,11 +19,7 @@
         </p>
         <ion-button
           shape="round"
-          routerLink="/empresas"
-          [queryParams]="{
-            id: tipo.id,
-            nombre: tipo.nombre
-          }">
+          (click)="selectedTipo(tipo)">
           Seleccionar {{ tipo.nombre }}
         </ion-button>
       </div>

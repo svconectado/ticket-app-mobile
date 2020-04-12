@@ -1,6 +1,39 @@
-<ion-list>
+<ion-list *ngIf="items?.length > 0; else notEmpresas">
+  <ion-list-header>
+    <ion-label>
+      {{ tipo?.nombre }}
+    </ion-label>
+  </ion-list-header>
   <app-empresa
-    *ngFor="let empresa of empresas"
+    *ngFor="let empresa of items"
     [empresa]="empresa">
   </app-empresa>
 </ion-list>
+<ng-template #notEmpresas>
+  <div
+    class="ion-padding ion-text-center"
+    *ngIf="items?.length === 0 && !searching">
+    <h1>
+      ¡Oops!
+      <ion-icon name="sad-outline"></ion-icon>
+    </h1>
+    <h2>No se encontrarón empresas en esta categoría.</h2>
+  </div>
+  <ion-list *ngIf="searching">
+    <ion-list-header>
+      <ion-label>
+        {{ tipo?.nombre }}
+      </ion-label>
+    </ion-list-header>
+    <ion-item
+      *ngFor="let i of [1, 2, 3, 4, 5, 6]"
+      lines="none">
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ng-template>
