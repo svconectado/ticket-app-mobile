@@ -10,6 +10,7 @@ import { SucursalesPageRoutingModule } from './sucursales-routing.module';
 import { SucursalesPage } from './sucursales.page';
 import { SucursalComponent } from './components/sucursal/sucursal.component';
 import { SucursalListContainer } from './containers/sucursal-list/sucursal-list.container';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { SucursalListContainer } from './containers/sucursal-list/sucursal-list.
     SucursalesPageRoutingModule
   ],
   declarations: [
+    MainComponent,
     SucursalesPage,
     SucursalComponent,
     SucursalListContainer

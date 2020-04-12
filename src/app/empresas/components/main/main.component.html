@@ -1,15 +1,9 @@
 <app-basic-header
   text="Inicio"
   title="Ticket Queue App"
-  defaultHref="/home"></app-basic-header>
+  [defaultHref]="'/home'"></app-basic-header>
 
 <ion-content *ngIf="tipoEmpresa">
-  <ion-list-header>
-    <ion-label>
-      {{ tipoEmpresa?.nombre }}
-    </ion-label>
-  </ion-list-header>
-  <!-- List of Text Items -->
   <app-empresa-list
     [tipo]="tipoEmpresa">
   </app-empresa-list>
