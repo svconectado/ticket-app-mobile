@@ -17,4 +17,5 @@ export class TipoEmpresaService extends ResourceService<TipoEmpresa> {
   ) {
     super('tipo-empresa', http, messageService);
   }
+
 }
