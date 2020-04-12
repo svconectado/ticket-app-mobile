@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
+import { NavController, LoadingController } from '@ionic/angular';
 
 import { TipoEmpresa } from '@core/models/tipo-empresa.model';
 import { LayoutService } from '@core/services/layout.service';
-import { TipoEmpresaService } from '@core/services/tipo-empresa.service';
-import { CustomBreakpointNames } from '@core/services/breakpoints.service';
-import { NavController, LoadingController } from '@ionic/angular';
-
 import { ListContainer } from '@shared/containers/list/list.container';
 import { TipoEmpresaService } from '@core/services/tipo-empresa.service';
+import { CustomBreakpointNames } from '@core/services/breakpoints.service';
 
 @Component({
   selector: 'app-home',
