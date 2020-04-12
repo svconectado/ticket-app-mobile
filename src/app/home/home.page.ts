@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { TipoEmpresa } from '@core/models/tipo-empresa.model';
+import { NavController, LoadingController } from '@ionic/angular';
 
-import { TIPO_EMPRESA } from '@core/const/tipo-empresa.const';
+import { TipoEmpresa } from '@core/models/tipo-empresa.model';
 import { LayoutService } from '@core/services/layout.service';
+import { ListContainer } from '@shared/containers/list/list.container';
+import { TipoEmpresaService } from '@core/services/tipo-empresa.service';
 import { CustomBreakpointNames } from '@core/services/breakpoints.service';
 
 @Component({
@@ -10,18 +12,21 @@ import { CustomBreakpointNames } from '@core/services/breakpoints.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage extends ListContainer<TipoEmpresa> {
   slideOpts: any = { };
   colors: string[] = [
     '#68889E',
     '#34B29D',
     '#AFD872',
   ]
-  tiposEmpresa: TipoEmpresa[] = TIPO_EMPRESA;
 
   constructor(
+    private navCtrl: NavController,
     private layoutService: LayoutService,
+    protected loadingCtrl: LoadingController,
+    private tipoEmpresaService: TipoEmpresaService
   ) {
+    super(tipoEmpresaService, loadingCtrl);
     this.layoutService.subscribeToLayoutChanges().subscribe(() => {
       let cantSlides = 0;
       if (this.layoutService.isBreakpointActive(CustomBreakpointNames.small))
@@ -34,6 +39,17 @@ export class HomePage {
         slidesPerView: cantSlides
       }
     })
+  }
+
+  ionViewDidEnter() {
+    if (!this.items) {
+      this.getList();
+    }
+  }
+
+  selectedTipo(tipo: TipoEmpresa) {
+    this.tipoEmpresaService.selectedObject(tipo);
+    this.navCtrl.navigateForward('/empresas')
   }
 
 }

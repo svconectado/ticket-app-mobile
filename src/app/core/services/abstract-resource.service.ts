@@ -37,4 +37,8 @@ export abstract class AbstractResourceService<T extends Resource> extends ErrorH
    *  and within the method the identifier must be extracted.
    */
   abstract deleteObject(objectId: number | T): Observable<T>;
+
+  abstract selectedObject(object: T): void;
+
+  abstract ordering(a: T, b: T): number;
 }

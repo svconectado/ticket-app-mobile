@@ -1,0 +1,19 @@
+<app-basic-header
+  text="Sucursales"
+  title="Ticket Queue App"
+  defaultHref="/"></app-basic-header>
+
+<ion-content 
+  class="container ion-padding ion-justify-content-center ion-align-items-center ion-text-center">
+  <div *ngIf="empresa" class="banner-container">
+    <ion-thumbnail slot="start">
+      <img [src]="empresa?.imagen">
+    </ion-thumbnail>
+    <ion-text>
+      {{ empresa.nombre | titlecase }}
+    </ion-text>
+  </div>
+  <h3 class="header-container">
+    Haz seleccionado
+  </h3>
+</ion-content>

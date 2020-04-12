@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { tap, catchError, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from '@environments/environment';
@@ -11,6 +11,8 @@ import { AbstractResourceService } from './abstract-resource.service';
 
 export class ResourceService<T extends Resource> extends AbstractResourceService<T> {
   protected url: string;
+  private source = new BehaviorSubject<T>(null);
+  object$ = this.source.asObservable();
 
   constructor(
     endPoint: string,
@@ -36,6 +38,11 @@ export class ResourceService<T extends Resource> extends AbstractResourceService
     return this.http.get<T[]>(`${this.url}/${queryParameters}`)
     .pipe(
       tap(_ => console.log('Data obtained successfully.')),
+      map((response: any) => {
+        if (response.header.code === -1)
+          return  [];
+        return response.data?.sort(this.ordering);
+      }),
       catchError(this.handleError<any>())
     );
   }
@@ -45,6 +52,7 @@ export class ResourceService<T extends Resource> extends AbstractResourceService
     return this.http.get<T>(`${this.url}/${id}`)
     .pipe(
       tap((datum: T) => console.log(`Datum obtained successfully: ${datum}.`)),
+      map((response: any) => response.data),
       catchError(this.handleError<T>())
     );
   }
@@ -52,6 +60,7 @@ export class ResourceService<T extends Resource> extends AbstractResourceService
   putObject(object: T): Observable<any> {
     return this.http.put(`${this.url}/${object.id}`, object).pipe(
       tap((datum: T) => this.log(`The changes in ${datum} were saved successfully.`)),
+      map((response: any) => response.data),
       catchError(this.handleError<T>())
     );
   }
@@ -60,6 +69,7 @@ export class ResourceService<T extends Resource> extends AbstractResourceService
     return this.http.post(this.url, object)
     .pipe(
       tap((datum: T) => this.log(`${datum} was saved correctly.`)),
+      map((response: any) => response.data),
       catchError(this.handleError<T>())
     );
   }
@@ -69,8 +79,21 @@ export class ResourceService<T extends Resource> extends AbstractResourceService
     return this.http.delete<T>(`${this.url}/${id}`)
     .pipe(
       tap((datum: T) => this.log(`${datum} was deleted correctly.`)),
+      map((response: any) => response.data),
       catchError(this.handleError<T>())
     );
+  }
+
+  selectedObject(object: T): void {
+    this.source.next(object);
+  }
+
+  ordering(a: T, b: T): number {
+    if (a.id < b.id)
+      return -1;
+    if (a.id > b.id)
+      return 1;
+    return 0;
   }
 
 }

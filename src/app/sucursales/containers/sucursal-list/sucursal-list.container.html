@@ -1,0 +1,19 @@
+<ion-searchbar
+    animated
+    [value]="searchValue"
+    placeholder="Busca una sucursal..."
+    (ionBlur)="clearSucursalList()"
+    (ionClear)="clearSucursalList()"
+    (ionCancel)="clearSucursalList()"
+    (ionChange)="filterSucursalList($event)">
+</ion-searchbar>
+<app-searching *ngIf="searching"></app-searching>
+<ion-list>
+  <app-sucursal
+    *ngFor="let sucursal of sucursales"
+    [sucursal]="sucursal">
+  </app-sucursal>
+</ion-list>
+<ion-text color="danger" *ngIf="sucursales.length == 0">
+  Lo sentimos, no se han encontrado resultados.
+</ion-text>

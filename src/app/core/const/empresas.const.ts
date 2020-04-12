@@ -9,7 +9,24 @@ export const EMPRESAS: Empresa[] = [
         nombreCorto: 'DAVIVIENDA',
         descripcion: null,
         tipo: TIPO_EMPRESA[0],
-        imagen: 'http:\/\/davivienda.buzzcoapp.com\/cms\/IMG_U\/davivienda.png',
+        imagen: 'https://demoscdn.blob.core.windows.net/imgs/banco-davivienda.png',
         sucursales: SUCURSALES
-    }
+    },
+    {
+        id: 2,
+        nombre: 'BANCO AGRÍCOLA',
+        nombreCorto: 'AGRÍCOLA',
+        descripcion: null,
+        tipo: TIPO_EMPRESA[0],
+        imagen: 'https://demoscdn.blob.core.windows.net/imgs/banco-agricola.png',
+        sucursales: SUCURSALES
+    },
+    {
+        id: 3,
+        nombre: 'BANCO CUSCATLÁN',
+        nombreCorto: 'CUSCATLÁN',
+        descripcion: null,
+        tipo: TIPO_EMPRESA[0],
+        sucursales: SUCURSALES
+    },
 ]

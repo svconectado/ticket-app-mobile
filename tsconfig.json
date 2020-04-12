@@ -22,6 +22,9 @@
       "@core/*": ["src/app/core/*"],
       "@home/*": ["src/app/home/*"],
       "@shared/*": ["src/app/shared/*"],
+      "@ticket/*": ["src/app/ticket/*"],
+      "@empresas/*": ["src/app/empresas/*"],
+      "@sucursales/*": ["src/app/sucursales/*"],
       "@environments/*": ["src/environments/*"]
     },
   },

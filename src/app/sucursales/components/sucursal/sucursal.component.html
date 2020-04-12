@@ -1,0 +1,17 @@
+<ion-item detail
+  [routerLink]="[sucursal.id]">
+  <ion-label class="ion-text-wrap">
+    <h3>{{ sucursal.nombre | titlecase }}</h3>
+    <p>
+      <strong>
+        Dirección: 
+      </strong>
+      {{ sucursal.direccion }}
+    </p>
+    <p>
+      <strong>
+        Horarios:
+      </strong>
+    </p>
+  </ion-label>
+</ion-item>
