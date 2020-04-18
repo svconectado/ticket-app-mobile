@@ -1,6 +1,6 @@
 <ion-item 
   lines="none"
-  [routerLink]="[empresa.id]">
+  (click)="selectedEmpresa()">
   <ion-thumbnail slot="start">
     <img 
       [alt]="'Logo de la empresa: ' + empresa.nombre"

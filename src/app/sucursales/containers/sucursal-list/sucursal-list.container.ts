@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Sucursal } from '@core/models/sucursal.model';
 import { SUCURSALES } from '@core/const/sucursal.const';
 import { Empresa } from '@core/models/empresa.model';
+import { NavController, LoadingController } from '@ionic/angular';
+import { SucursalService } from '@core/services/sucursal.service';
+import { ListContainer } from '@shared/containers/list/list.container';
 
 @Component({
   selector: 'app-sucursal-list',
@@ -9,43 +12,59 @@ import { Empresa } from '@core/models/empresa.model';
   styleUrls: ['./sucursal-list.container.scss'],
 })
 // tslint:disable-next-line: component-class-suffix
-export class SucursalListContainer implements OnInit {
+export class SucursalListContainer extends ListContainer<Sucursal> implements OnInit {
   @Input() empresa: Empresa | number;
-  @Input() sucursales: Sucursal[];
   private auxSucursales: Sucursal[];
   public searching = false;
   public searchValue = '';
-  constructor() { }
+  constructor(
+    private navCtrl: NavController,
+    private sucursalService: SucursalService,
+    protected loadingCtrl: LoadingController,
+  ) {
+    super(sucursalService, loadingCtrl);
+  }
 
   ngOnInit() {
+    // this.getList();
     this.getSucursalList();
   }
 
-  getSucursalList() {
+  selectedSucursal(sucursal: Sucursal) {
+    const empresa = typeof this.empresa === 'number' ? this.empresa: this.empresa?.id;
+    this.navCtrl.navigateForward(['empresas', empresa, 'sucursales', sucursal.id]);
+  }
+
+  async getSucursalList() {
+    await this.presentLoading();
     this.searching = true;
-    this.sucursales = SUCURSALES.filter(({empresa}) => {
-      const idCurrent = typeof empresa === 'number' ? empresa: empresa.id;
+    this.items = SUCURSALES.filter(({empresa}) => {
+      const idCurrent = typeof empresa === 'number' ? empresa: empresa?.id;
       const idFilter = typeof this.empresa === 'number' ? this.empresa: this.empresa.id;
       return idCurrent === idFilter;
     });
     this.searching = false;
-    this.auxSucursales = this.sucursales;
+    this.dismissLoading();
+    this.auxSucursales = this.items;
   }
 
   filterSucursalList($event: Event) {
     this.searching = true;
     this.searchValue = ($event.target as HTMLInputElement).value.trim();
-    this.sucursales = this.sucursales.filter((sucursal: Sucursal) => {
-      return (
-        sucursal.nombre.toLowerCase().includes(this.searchValue) ||
-        sucursal.direccion?.toLowerCase().includes(this.searchValue))
-    })
+    if (this.searchValue.length > 0)
+      this.items = this.items.filter((sucursal: Sucursal) => {
+        return (
+          sucursal.nombre.toLowerCase().includes(this.searchValue) ||
+          sucursal.direccion?.toLowerCase().includes(this.searchValue))
+      })
+    else
+      this.clearSucursalList();
     this.searching = false;
   }
 
   clearSucursalList() {
     this.searchValue = '';
-    this.sucursales = this.auxSucursales;
+    this.items = this.auxSucursales;
   }
 
 }
