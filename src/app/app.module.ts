@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CoreModule } from '@core/core.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { CoreModule } from '@core/core.module';
     BrowserModule,
     AppRoutingModule,
     IonicModule.forRoot(),
+    BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
