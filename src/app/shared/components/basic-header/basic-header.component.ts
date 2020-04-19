@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
 export class BasicHeaderComponent {
   @Input() text: string;
   @Input() title: string;
-  @Input() defaultHref: string;
+  @Input() defaultHref = '/';
 
   constructor() { }
 

@@ -3,9 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { QuicklinkStrategy } from 'ngx-quicklink';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
-    path: 'home',
+    path: '',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
