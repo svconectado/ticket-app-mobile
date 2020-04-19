@@ -5,6 +5,7 @@ import { Empresa } from '@core/models/empresa.model';
 import { EMPRESAS } from '@core/const/empresas.const';
 import { EmpresaService } from '@core/services/empresa.service';
 import { NavController } from '@ionic/angular';
+import { TitleService } from '@core/services/title.service';
 
 @Component({
   selector: 'app-main',
@@ -13,11 +14,12 @@ import { NavController } from '@ionic/angular';
 })
 export class MainComponent implements OnInit, OnDestroy {
   subscription: Subscription;
-
+  title: string;
   empresa: Empresa;
 
   constructor(
     private navCtrl: NavController,
+    private titleService: TitleService,
     private empresaService: EmpresaService
   ) { }
 
@@ -26,10 +28,13 @@ export class MainComponent implements OnInit, OnDestroy {
       if (!empresa)
         this.navCtrl.navigateBack('/');
       this.empresa = empresa;
+      this.title = this.titleService.title.split(' ')[0];
+      this.titleService.title = this.empresa.nombre;
     })
   }
 
   ngOnDestroy() {
+    this.titleService.resetTitle(this.title);
     this.subscription.unsubscribe();
   }
 

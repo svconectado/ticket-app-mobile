@@ -18,6 +18,7 @@ import { Sucursal } from '@core/models/sucursal.model';
 import { EmpresaService } from '@core/services/empresa.service';
 import { SucursalService } from '@core/services/sucursal.service';
 import { TicketService } from '@core/services/ticket.service';
+import { TitleService } from '@core/services/title.service';
 
 @Component({
   selector: 'app-ticket',
@@ -48,9 +49,11 @@ export class TicketPage implements OnInit, OnDestroy {
   empresa: Empresa;
   sucursal: Sucursal;
   open = false;
+  title: string;
 
   constructor(
     private navCtrl: NavController,
+    private titleService: TitleService,
     private ticketService: TicketService,
     private empresaService: EmpresaService,
     private sucursalService: SucursalService
@@ -72,10 +75,13 @@ export class TicketPage implements OnInit, OnDestroy {
         this.navCtrl.navigateBack('/');
       this.empresa = result.empresa;
       this.sucursal = result.sucursal;
+      this.title = this.titleService.title.split(' ')[0];
+      this.titleService.title = `${this.sucursal.nombre} - ${this.empresa.nombre}`;
     });
   }
 
   ngOnDestroy() {
+    this.titleService.resetTitle(this.title);
     this.subscription.unsubscribe();
   }
 
