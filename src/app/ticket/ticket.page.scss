@@ -1,0 +1,17 @@
+ion-button {
+    margin: 10px auto;
+    max-width: 375px;
+}
+
+.arrow {
+    margin-right: 10px;
+    transition: all 400ms 50ms;
+}
+
+.down {
+    transform: rotate(0deg);
+}
+    
+.up {
+    transform: rotate(180deg);
+}

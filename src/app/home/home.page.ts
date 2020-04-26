@@ -6,6 +6,7 @@ import { LayoutService } from '@core/services/layout.service';
 import { ListContainer } from '@shared/containers/list/list.container';
 import { TipoEmpresaService } from '@core/services/tipo-empresa.service';
 import { CustomBreakpointNames } from '@core/services/breakpoints.service';
+import { TitleService } from '@core/services/title.service';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +23,7 @@ export class HomePage extends ListContainer<TipoEmpresa> {
 
   constructor(
     private navCtrl: NavController,
+    private titleService: TitleService,
     private layoutService: LayoutService,
     protected loadingCtrl: LoadingController,
     private tipoEmpresaService: TipoEmpresaService
@@ -45,6 +47,7 @@ export class HomePage extends ListContainer<TipoEmpresa> {
     if (!this.items) {
       this.getList();
     }
+    this.titleService.title = 'Inicio';
   }
 
   selectedTipo(tipo: TipoEmpresa) {

@@ -4,8 +4,9 @@
   defaultHref="/"></app-basic-header>
 
 <ion-content 
-  class="container ion-padding ion-justify-content-center ion-align-items-center ion-text-center">
-  <div *ngIf="empresa" class="banner-container">
+  *ngIf="empresa && sucursal"
+  class="container ion-padding ion-text-center">
+  <div class="banner-container">
     <ion-thumbnail slot="start">
       <img [src]="empresa?.imagen">
     </ion-thumbnail>
@@ -16,4 +17,40 @@
   <h3 class="header-container">
     Haz seleccionado
   </h3>
+  <ion-item lines="none">
+    <ion-label class="ion-text-wrap">
+      <h3>{{ sucursal.nombre | titlecase }}</h3>
+      <p>
+        <strong>
+          Dirección: 
+        </strong>
+        {{ sucursal.direccion }}
+      </p>
+    </ion-label>
+  </ion-item>
+  <ion-list *ngIf="sucursal?.horarios?.length > 0">
+    <ion-list-header tappable (click)="toggleSchudels()">
+      <ion-icon
+        name="chevron-up"
+        class="arrow"
+        [ngClass]="{'down': open, 'up': !open}">
+      </ion-icon>
+      Horarios
+    </ion-list-header>
+    <div *ngIf="open" [@slideInOut]>
+      <ion-item *ngFor="let horario of sucursal.horarios">
+        <ion-label>
+          {{ getDay(horario.dia) }}
+        </ion-label>
+        <ion-chip color="warning" slot="end">
+          <ion-label>
+            {{ horario.horaApertura }} - {{ horario.horaCierre }}
+          </ion-label>
+        </ion-chip>
+      </ion-item>
+    </div>
+  </ion-list>
+  <ion-button (click)="getTicket()" color="tertiary" expand="block">
+    Generar ticket
+  </ion-button>
 </ion-content>

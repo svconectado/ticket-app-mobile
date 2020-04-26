@@ -1,5 +1,5 @@
 <ion-item detail
-  [routerLink]="[sucursal.id]">
+  (click)="selectedSucursal()">
   <ion-label class="ion-text-wrap">
     <h3>{{ sucursal.nombre | titlecase }}</h3>
     <p>
@@ -7,11 +7,6 @@
         Dirección: 
       </strong>
       {{ sucursal.direccion }}
-    </p>
-    <p>
-      <strong>
-        Horarios:
-      </strong>
     </p>
   </ion-label>
 </ion-item>

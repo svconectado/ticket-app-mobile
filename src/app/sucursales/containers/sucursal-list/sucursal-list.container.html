@@ -8,12 +8,57 @@
     (ionChange)="filterSucursalList($event)">
 </ion-searchbar>
 <app-searching *ngIf="searching"></app-searching>
-<ion-list>
+<ion-list *ngIf="items?.length > 0 && !filterList; else notSucursales">
   <app-sucursal
-    *ngFor="let sucursal of sucursales"
-    [sucursal]="sucursal">
+    *ngFor="let sucursal of items"
+    [sucursal]="sucursal"
+    (selectedSucursalEmitter)="selectedSucursal($event)">
   </app-sucursal>
 </ion-list>
-<ion-text color="danger" *ngIf="sucursales.length == 0">
-  Lo sentimos, no se han encontrado resultados.
-</ion-text>
+<ng-template #notSucursales>
+  <div
+    class="ion-padding ion-text-center"
+    *ngIf="items?.length === 0 && !searching">
+    <h1>
+      ¡Oops!
+      <ion-icon name="sad-outline"></ion-icon>
+    </h1>
+    <h2>No se encontrarón sucursales para esta empresa.</h2>
+  </div>
+  <ion-list *ngIf="searching">
+    <ion-item
+      *ngFor="let i of [1, 2, 3, 4, 5, 6]"
+      lines="none">
+      <ion-label class="ion-text-wrap">
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <strong>
+            <ion-skeleton-text animated style="width: 35%"></ion-skeleton-text>
+          </strong>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ng-template>
+
+<ion-list *ngIf="filterList?.length > 0; else notResults">
+  <app-sucursal
+    *ngFor="let sucursal of filterList"
+    [sucursal]="sucursal"
+    (selectedSucursalEmitter)="selectedSucursal($event)">
+  </app-sucursal>
+</ion-list>
+<ng-template #notResults>
+  <div
+    class="ion-padding ion-text-center"
+    *ngIf="filterList?.length === 0 && !searching">
+    <h1>
+      ¡Oops!
+      <ion-icon name="sad-outline"></ion-icon>
+    </h1>
+    <h2>No se encontrarón sucursales para esta esta búsqueda.</h2>
+  </div>
+</ng-template>

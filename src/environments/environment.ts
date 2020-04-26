@@ -4,9 +4,12 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'http://18.216.34.87:8080/ticketapp/app',
+  baseTitlePage: 'Ticket Queue App',
+  socketUrl: 'wss://server16.eastus.cloudapp.azure.com/',
+  baseApiUrl: 'http://localhost:8080/app',
   endpoints: {
     empresa: 'empresa',
+    sucursal: 'sucursales',
     tipoEmpresa: 'tipoempresa',
   }
 };

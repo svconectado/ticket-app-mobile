@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Sucursal } from '@core/models/sucursal.model';
+import { SucursalService } from '@core/services/sucursal.service';
 
 @Component({
   selector: 'app-sucursal',
@@ -8,7 +9,15 @@ import { Sucursal } from '@core/models/sucursal.model';
 })
 export class SucursalComponent {
   @Input() sucursal: Sucursal;
+  @Output() selectedSucursalEmitter = new EventEmitter<Sucursal>();
 
-  constructor() { }
+  constructor(
+    private sucursalService: SucursalService
+  ) { }
+
+  selectedSucursal() {
+    this.sucursalService.selectedObject(this.sucursal);
+    this.selectedSucursalEmitter.emit(this.sucursal);
+  }
 
 }

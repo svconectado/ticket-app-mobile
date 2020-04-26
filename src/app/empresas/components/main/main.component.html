@@ -1,9 +1,8 @@
 <app-basic-header
   text="Inicio"
-  title="Ticket Queue App"
-  [defaultHref]="'/home'"></app-basic-header>
+  title="Ticket Queue App"></app-basic-header>
 
-<ion-content *ngIf="tipoEmpresa">
+<ion-content class="ion-padding" *ngIf="tipoEmpresa">
   <app-empresa-list
     [tipo]="tipoEmpresa">
   </app-empresa-list>
