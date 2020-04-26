@@ -11,9 +11,9 @@ export const CustomBreakpointNames = {
 })
 export class BreakpointsService {
   breakpoints: any = {
-    '(min-width: 801px)': CustomBreakpointNames.small,
-    '(max-width: 800px)': CustomBreakpointNames.mediumHanset,
-    '(max-width: 500px)': CustomBreakpointNames.extraSmall
+    '(min-width: 1001px)': CustomBreakpointNames.small,
+    '(max-width: 1000px)': CustomBreakpointNames.mediumHanset,
+    '(max-width: 600px)': CustomBreakpointNames.extraSmall
   }
 
   constructor() { }
