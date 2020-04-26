@@ -14,7 +14,7 @@ import { ListContainer } from '@shared/containers/list/list.container';
 // tslint:disable-next-line: component-class-suffix
 export class SucursalListContainer extends ListContainer<Sucursal> implements OnInit {
   @Input() empresa: Empresa | number;
-  private auxSucursales: Sucursal[];
+  public filterList: Sucursal[];
   public searching = false;
   public searchValue = '';
   constructor(
@@ -26,8 +26,8 @@ export class SucursalListContainer extends ListContainer<Sucursal> implements On
   }
 
   ngOnInit() {
-    // this.getList();
-    this.getSucursalList();
+    this.params.empresa = typeof this.empresa === 'number' ? this.empresa: this.empresa?.id;
+    this.getList();
   }
 
   selectedSucursal(sucursal: Sucursal) {
@@ -35,24 +35,11 @@ export class SucursalListContainer extends ListContainer<Sucursal> implements On
     this.navCtrl.navigateForward(['empresas', empresa, 'sucursales', sucursal.id]);
   }
 
-  async getSucursalList() {
-    await this.presentLoading();
-    this.searching = true;
-    this.items = SUCURSALES.filter(({empresa}) => {
-      const idCurrent = typeof empresa === 'number' ? empresa: empresa?.id;
-      const idFilter = typeof this.empresa === 'number' ? this.empresa: this.empresa.id;
-      return idCurrent === idFilter;
-    });
-    this.searching = false;
-    this.dismissLoading();
-    this.auxSucursales = this.items;
-  }
-
   filterSucursalList($event: Event) {
     this.searching = true;
     this.searchValue = ($event.target as HTMLInputElement).value.trim();
     if (this.searchValue.length > 0)
-      this.items = this.items.filter((sucursal: Sucursal) => {
+      this.filterList = this.items.filter((sucursal: Sucursal) => {
         return (
           sucursal.nombre.toLowerCase().includes(this.searchValue) ||
           sucursal.direccion?.toLowerCase().includes(this.searchValue))
@@ -64,7 +51,7 @@ export class SucursalListContainer extends ListContainer<Sucursal> implements On
 
   clearSucursalList() {
     this.searchValue = '';
-    this.items = this.auxSucursales;
+    this.filterList = null;
   }
 
 }

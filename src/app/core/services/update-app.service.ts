@@ -1,7 +1,8 @@
-import { Injectable, ApplicationRef } from '@angular/core';
+import { first } from 'rxjs/operators';
 import { SwUpdate } from '@angular/service-worker';
 import { AlertController } from '@ionic/angular';
-import { first } from 'rxjs/operators';
+import { LoadingController } from '@ionic/angular';
+import { Injectable, ApplicationRef } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class UpdateAppService {
   constructor(
     private swUpdate: SwUpdate,
     private appRef: ApplicationRef,
-    private alertController: AlertController
+    protected loadingCtrl: LoadingController,
+    private alertController: AlertController,
   ) {
     const appIsStable$ = appRef.isStable.pipe(first(
       isStable => isStable === true
@@ -54,6 +56,7 @@ export class UpdateAppService {
         }
       ]
     });
+    this.loadingCtrl.dismiss();
     await alert.present();
   }
 

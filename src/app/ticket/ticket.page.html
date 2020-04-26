@@ -28,7 +28,7 @@
       </p>
     </ion-label>
   </ion-item>
-  <ion-list>
+  <ion-list *ngIf="sucursal?.horarios?.length > 0">
     <ion-list-header tappable (click)="toggleSchudels()">
       <ion-icon
         name="chevron-up"

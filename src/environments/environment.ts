@@ -6,10 +6,10 @@ export const environment = {
   production: false,
   baseTitlePage: 'Ticket Queue App',
   socketUrl: 'wss://server16.eastus.cloudapp.azure.com/',
-  baseApiUrl: 'https://ticket-api.victorcornejo.com/app/',
+  baseApiUrl: 'http://localhost:8080/app',
   endpoints: {
     empresa: 'empresa',
-    sucursal: 'sucursal',
+    sucursal: 'sucursales',
     tipoEmpresa: 'tipoempresa',
   }
 };

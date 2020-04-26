@@ -5,7 +5,7 @@ export const environment = {
   baseApiUrl: 'https://ticket-api.victorcornejo.com/app',
   endpoints: {
     empresa: 'empresa',
-    sucursal: 'sucursal',
+    sucursal: 'sucursales',
     tipoEmpresa: 'tipoempresa',
   }
 };
